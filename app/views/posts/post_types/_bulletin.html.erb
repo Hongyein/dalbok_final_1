@@ -1,0 +1,39 @@
+<h2><%= bulletin_name params[:bulletin_id] %></h2>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>제목</th>
+      <th>작성자</th>
+      <th>Data actions</th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @posts.each do |post| %>
+  <tr>
+     <td class="col-md-6 col-xs-6">   <%= link_to post.title, [post.bulletin, post] %></td>
+    <td><%= post.user.present? ? post.user.email : "n/a" %>, <%= time_ago_in_words(post.created_at) %> ago</td>
+      
+   
+    <td>
+      <% if user_signed_in? %>
+        
+        
+          <%= link_to "<span class='glyphicon glyphicon-edit'></span>".html_safe, edit_bulletin_post_path(post.bulletin, post) if post.updatable_by? current_user %>&nbsp;
+
+          <%= link_to "<span class='glyphicon glyphicon-trash'></span>".html_safe, edit_bulletin_post_path(post.bulletin, post), method: :delete, data: { confirm: '확실하신가요?' } if post.deletable_by? current_user %>
+         <%= link_to icon('trash'),  [post.bulletin, post], method: :delete, data: { confirm: 'Are you sure?' } if post.deletable_by? current_user %> 
+    <%= link_to 'Destroy', [post.bulletin, post], method: :delete, data: { confirm: '삭제하시겠습니까?' }, class:'btn btn-default' %>
+      
+    
+      <% end %>
+
+    </td>
+  </tr>
+<% end %>
+  </tbody>
+</table>
+
+
+<%= link_to '글 작성', new_bulletin_post_path, class: 'btn btn-default' %>

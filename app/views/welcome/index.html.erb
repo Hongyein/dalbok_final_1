@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Workspace</title>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+
+  <div class="container">
+            <!-- Marketing Icons Section -->
+            <div class="row">
+                <div class="col-lg-12">
+                    <br>
+                    <h4 align="center">어쩌면 각자에겐 작은 기부였을지도 모릅니다. 하지만 그 각자가 모였더니 커다란 힘이 되었습니다.</h4>
+                    <h1 class="page-header"><b>
+                      이번 달 가장 핫한 활동
+                    </b></h1>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                    
+                        <div class="panel-body">
+                            <a href="/about_dalbok">
+                            <img class="img-responsive img-portfolio img-hover" src="/img/1.jpg" alt="">
+                              <p> <a href= "/about_dalbok"><br><b>달의 축복</b><br>저소득층 소녀들의 여성용품 지원</br> 
+                                <br></br> </a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                      
+                        <div class="panel-body">
+                            <a href="portfolio-item.html">
+                            <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                         
+                            <p><br><b>국내 빈공 아동 후원</b><br>아이들에게 따뜻한 한 끼 식사를</br>
+                            <br></br></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                       <div class="panel-body">
+                            <a href="portfolio-item.html">
+                            <img class="img-responsive img-portfolio img-hover" src="http://placehold.it/700x450" alt="">
+                            <p><br><b>유기견 자원봉사자 모집</b><br>사람의 손길이 그리운 유기견들에게 <br>사랑을 주세요!</br>
+                            </br></p>
+                        </div>
+                    </div>
+                </div>
+        </div>
+
+
+
+
+
+
+
+<%= link_to "참여하러 가기", bulletin_posts_path(2), class:'btn btn-default'  %>
+<br><br><p>======로그인 테스트=====</p>
+<% if user_signed_in? %>
+  <p>현재 로그인된 유저의 이메일 : <%= current_user.email %></p>
+  <p><%= link_to "로그아웃", destroy_user_session_path, method: :delete, data: { confirm: "Are you sure?" } %></p>
+<% else %>
+  <p><%= link_to "로그인", new_user_session_path %></p>
+<% end %>
+</body>
